@@ -23,17 +23,17 @@ class Matrix{
         bool operator== (const Matrix& matrix);
 
         //operations on matrix
-        friend Matrix operator+ (const Matrix<double>& matrixOne, const Matrix<double>& matrixTwo);
-        friend Matrix operator+ (const double& scalar, const Matrix<double>& matrix);
-        friend Matrix operator+ (const Matrix<double>& matrix, const double& scalar);
+        friend Matrix operator+ (const Matrix& matrixOne, const Matrix& matrixTwo);
+        friend Matrix operator+ (const double& scalar, const Matrix& matrix);
+        friend Matrix operator+ (const Matrix& matrix, const double& scalar);
 
-        friend Matrix operator- (const Matrix<U>& matrixOne, const Matrix<U>& matrixTwo);
-        friend Matrix operator- (const U& scalar, const Matrix<U>& matrix);
-        friend Matrix operator- (const Matrix<U>& matrix, const U& scalar);
+        friend Matrix operator- (const Matrix& matrixOne, const Matrix& matrixTwo);
+        friend Matrix operator- (const double& scalar, const Matrix& matrix);
+        friend Matrix operator- (const Matrix& matrix, const double& scalar);
 
-        friend Matrix operator* (const Matrix<U>& matrixOne, const Matrix<U>& matrixTwo);
-        friend Matrix operator* (const U& scalar, const Matrix<U>& matrix);
-        friend Matrix operator* (const Matrix<U>& matrix, const U& scalar);
+        friend Matrix operator* (const Matrix& matrixOne, const Matrix& matrixTwo);
+        friend Matrix operator* (const double& scalar, const Matrix& matrix);
+        friend Matrix operator* (const Matrix& matrix, const double& scalar);
 
     private:
         int index(int row, int column);
