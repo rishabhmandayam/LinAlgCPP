@@ -75,6 +75,11 @@ double Matrix::get(int row, int column){
     return data[index(row, column)];
 }
 
+bool Matrix::set(int row, int column, double val) {
+    this->data[index(row, column)] = val;
+    return true;
+}
+
 int Matrix::rowCount() {
     return nRows;
 }
