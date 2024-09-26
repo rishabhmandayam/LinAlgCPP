@@ -154,6 +154,17 @@ Matrix operator- (const Matrix& matrix, const double& scalar) {
 }
 
 //Multplication Operations
+Matrix operator* (const Matrix& matrixOne, const Matrix& matrixTwo) {
+    if (matrixOne.nColumns != matrixTwo.nRows) {
+        throw std::invalid_argument("Dimension Mismatch Exception");
+    }
+    Matrix result(matrix.nRows, matrix.nColumns);
+    for (int i = 0; i < matrix.numberOfElements; i++) {
+        result.data[i] = scalar -  matrix.data[i];
+    }
+    return result;
+}
+
 Matrix operator* (const double& scalar, const Matrix& matrix) {
     Matrix result(matrix.nRows, matrix.nColumns);
     for (int i = 0; i < matrix.numberOfElements; i++) {
@@ -172,7 +183,9 @@ Matrix operator* (const Matrix& matrix, const double& scalar) {
 
 //private functions
 int Matrix::index(int row, int column) const{
-    if ((row < numRows) && (column < numRows))
+    if ((row >= nRows) || (column >= nColumns) || (row < 0) || (column <0)) {
+        throw std::invalid_argument("Index Out of Bounds Exception");
+    }
     return (row * nColumns) + column;
 }
 
