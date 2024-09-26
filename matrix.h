@@ -36,7 +36,9 @@ class Matrix{
         friend Matrix operator* (const Matrix& matrix, const double& scalar);
 
     private:
-        int index(int row, int column);
+        int index(int row, int column) const;
+
+        double dotProduct(int row, int column, const Matrix& B) const;
 
     private:
         double *data;

@@ -71,11 +71,8 @@ bool Matrix::resize(int rows, int columns){
     }
 }
 
-double Matrix::get(int row, int column) {
-    int index = index(row, column);
-    if (index >= 0) {
-        return data[index];
-    }
+double Matrix::get(int row, int column){
+    return data[index(row, column)];
 }
 
 int Matrix::rowCount() {
@@ -155,4 +152,36 @@ Matrix operator- (const Matrix& matrix, const double& scalar) {
     }
     return result;
 }
+
+//Multplication Operations
+Matrix operator* (const double& scalar, const Matrix& matrix) {
+    Matrix result(matrix.nRows, matrix.nColumns);
+    for (int i = 0; i < matrix.numberOfElements; i++) {
+        result.data[i] = scalar -  matrix.data[i];
+    }
+    return result;
+}
+
+Matrix operator* (const Matrix& matrix, const double& scalar) {
+    Matrix result(matrix.nRows, matrix.nColumns);
+    for (int i = 0; i < matrix.numberOfElements; i++) {
+        result.data[i] = matrix.data[i] - scalar;
+    }
+    return result;
+}
+
+//private functions
+int Matrix::index(int row, int column) const{
+    if ((row < numRows) && (column < numRows))
+    return (row * nColumns) + column;
+}
+
+double Matrix::dotProduct(int row, int column, const Matrix& B) const{
+    double sum = 0.0;
+    for (int i = 0; i < nColumns; i++) {
+        sum += data[index(row, i)] * B.data[B.index(i, column)];
+    }
+    return sum;
+}
+
 
