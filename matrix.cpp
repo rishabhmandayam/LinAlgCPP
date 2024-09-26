@@ -83,8 +83,23 @@ int Matrix::columnCount() {
     return nColumns;
 }
 
-//Matrix Operations
+bool Matrix::operator== (const Matrix& matrix) {
+    if (this->nRows != matrix.nRows || this->nColumns != matrix.nColumns) {
+        return false;
+    }
 
+    for (int i = 0; i < this->numberOfElements; i++) {
+        if (this->data[i] != matrix.data[i]) {
+            return false;
+        }
+    }
+
+    return true;
+
+}
+
+//Matrix Operations
+//
 //Addition Operations
 Matrix operator+ (const Matrix& matrixOne, const Matrix& matrixTwo) {
     int oneRows = matrixOne.nRows;
@@ -158,9 +173,11 @@ Matrix operator* (const Matrix& matrixOne, const Matrix& matrixTwo) {
     if (matrixOne.nColumns != matrixTwo.nRows) {
         throw std::invalid_argument("Dimension Mismatch Exception");
     }
-    Matrix result(matrix.nRows, matrix.nColumns);
-    for (int i = 0; i < matrix.numberOfElements; i++) {
-        result.data[i] = scalar -  matrix.data[i];
+    Matrix result(matrixOne.nRows, matrixTwo.nColumns);
+    
+    for (int r = 0; r < matrixOne.nRows; r++) {
+        for (int c = 0; c < matrixTwo.nColumns; c++)
+        result.set(r, c, matrixOne.dotProduct(r, c, matrixTwo));
     }
     return result;
 }
