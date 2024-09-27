@@ -1,5 +1,7 @@
 #include "matrix.h"
 #include <stdexcept>
+#include <iomanip>
+#include <math.h>
 
 //constructors
 Matrix::Matrix(){
@@ -43,6 +45,18 @@ Matrix::Matrix(const Matrix& copy){
     }
 }
 
+Matrix::Matrix(int rows, int columns, const std::vector<double> *inputData) {
+     nRows = rows;
+    nColumns = columns;
+    numberOfElements = nRows * nColumns;
+    data = new double[numberOfElements];
+
+    for (int i = 0; i<numberOfElements; i++) {
+        data[i] = inputData->at(i);
+    }
+
+}
+
 //Deconstructor
 Matrix::~Matrix(){
     if (data != nullptr){
@@ -68,6 +82,22 @@ bool Matrix::resize(int rows, int columns){
     }
     else {
         return false;
+    }
+}
+
+void Matrix::identity() {
+    if (!isSquare()) {
+        throw std::invalid_argument("Not a Square Matrix");
+    }
+
+    for (int row = 0; row < nRows; row++) {
+        for (int col = 0; col < nColumns; col++) {
+            if (row == col) {
+                data[index(row, col)] = 1.0;
+            } else {
+                data[index(row, col)] = 0.0;
+            }
+        }
     }
 }
 
@@ -218,5 +248,11 @@ double Matrix::dotProduct(int row, int column, const Matrix& B) const{
     }
     return sum;
 }
+
+bool Matrix::isSquare() {
+    return nRows == nColumns;
+}
+
+//row operations
 
 
