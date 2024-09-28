@@ -101,6 +101,12 @@ void Matrix::identity() {
     }
 }
 
+bool Matrix:: compare(const Matrix& matrix, double tol) {
+     if (nRows != matrix.nRows || nColumns != matrix.nColumns) {
+        return false;
+    }
+}
+
 double Matrix::get(int row, int column){
     return data[index(row, column)];
 }
