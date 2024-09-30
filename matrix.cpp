@@ -102,9 +102,26 @@ void Matrix::identity() {
 }
 
 bool Matrix:: compare(const Matrix& matrix, double tol) {
-     if (nRows != matrix.nRows || nColumns != matrix.nColumns) {
+    if (nRows != matrix.nRows || nColumns != matrix.nColumns) {
         return false;
     }
+
+    double elementSquaredError = 0;
+    for (int i = 0; i < numberOfElements; i++) {
+        double matrixOneElement = data[i];
+        double matrixTwoElement = matrix.data[i];
+
+        elementSquaredError += (matrixOneElement - matrixTwoElement)*(matrixOneElement - matrixTwoElement);
+    }
+
+    double euclidianDistance = sqrt(elementSquaredError);
+
+    if (euclidianDistance > tol) {
+        return false;
+    }
+
+    return true;
+
 }
 
 double Matrix::get(int row, int column){
