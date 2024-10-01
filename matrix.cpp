@@ -46,7 +46,7 @@ Matrix::Matrix(const Matrix& copy){
 }
 
 Matrix::Matrix(int rows, int columns, const std::vector<double> *inputData) {
-     nRows = rows;
+    nRows = rows;
     nColumns = columns;
     numberOfElements = nRows * nColumns;
     data = new double[numberOfElements];
@@ -101,7 +101,12 @@ void Matrix::identity() {
     }
 }
 
-bool Matrix:: compare(const Matrix& matrix, double tol) {
+bool Matrix::inverse() {
+    //TODO
+    return true;
+}
+
+bool Matrix::compare(const Matrix& matrix, double tol) {
     if (nRows != matrix.nRows || nColumns != matrix.nColumns) {
         return false;
     }

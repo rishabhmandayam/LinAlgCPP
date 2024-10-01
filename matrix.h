@@ -7,6 +7,16 @@
 /**
  * @class Matrix
  * @brief A class that represents a mathematical matrix and supports various matrix operations.
+ * TODO:
+ * [x] Matrix Constructors
+ * [x] Resize
+ * [x] Identity
+ * [] Inverse
+ * [] Compare
+ * [] equalsWithTolerance
+ * [] Gauss Jordan Functions
+ * [] Join Matrix
+ * [] Find Max Row
  */
 class Matrix{
     public:
