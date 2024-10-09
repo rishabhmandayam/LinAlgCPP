@@ -152,7 +152,7 @@ bool Matrix::operator== (const Matrix& matrix) {
     }
 
     for (int i = 0; i < this->numberOfElements; i++) {
-        if (this->data[i] != matrix.data[i]) {
+        if (!equalsWithTolerance(this->data[i], matrix.data[i])) {
             return false;
         }
     }
@@ -281,6 +281,23 @@ bool Matrix::isSquare() {
     return nRows == nColumns;
 }
 
+bool equalsWithTolerance(double itemOne, double itemTwo){
+    return fabs(itemOne - itemTwo) < 1e-9;
+}
 //row operations
 
+void Matrix::multiplyRow(int row, double factor){
+    for (int i = 0; i < nColumns; i++) {
+        data[index(row, i)] *= factor;
+    }
+}
+
+void Matrix::printMatrix(){
+ for (int i = 0; i < nRows; i++) {
+        for (int j = 0; j < nColumns; j++) {
+            std::cout << data[index(i, j)] << " ";
+        }
+        std::cout << std::endl;
+    }
+}
 
