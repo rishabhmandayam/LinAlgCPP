@@ -13,10 +13,10 @@ namespace lin_alg {
     };
 
     class mat {
+        std::vector<double> data;
         private:
             size_t n_rows;
             size_t n_cols;
-            std::vector<double> data;
         public:
             //Default constructor -> empty matrix (0 x 0)
             mat();
@@ -43,27 +43,38 @@ namespace lin_alg {
             //
             //
             friend mat operator+(const mat& A, const mat& B);
-            friend mat operator-(const mat& A, const mat& B);
-
             friend mat operator+(const mat& A, double scalar);
             friend mat operator+(double scalar, const mat& A);
 
+            friend mat operator-(const mat& A, const mat& B);
             friend mat operator-(const mat& A, double scalar);
             friend mat operator-(double scalar, const mat& A);
 
             //Schur Multiplication
             friend mat operator%(const mat& A, const mat& B);
+            friend mat operator%(const mat& A, double scalar);
+            friend mat operator%(double scalar, const mat& A);
 
             // Element-wise division
             friend mat operator/(const mat& A, const mat& B);
             friend mat operator/(const mat& A, double scalar);
+            friend mat operator/(double scalar, const mat& A);
 
             // Equality comparisons -> element-wise 1.0 or 0.0
             friend mat operator==(const mat& A, const mat& B);
+            friend mat operator==(const mat& A, double scalar);
+
             friend mat operator!=(const mat& A, const mat& B);
+            friend mat operator!=(const mat& A, double scalar);
+            
             friend mat operator<=(const mat& A, const mat& B);
+            friend mat operator<=(const mat& A, double scalar);
+            
             friend mat operator>=(const mat& A, const mat& B);
+            friend mat operator>=(const mat& A, double scalar);
+            
             friend mat operator<(const mat& A, const mat& B);
+            
             friend mat operator>(const mat& A, const mat& B);
     };
 }

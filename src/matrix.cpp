@@ -84,6 +84,10 @@ namespace lin_alg {
         return result;
     }
 
+     /* ###########
+    Operators
+    ########### */
+
     mat operator+(const mat& A, const double scalar) {
         mat result(A.n_rows_(), A.n_cols_());
         for (size_t i = 0; i < A.data.size(); ++i) {
@@ -97,7 +101,7 @@ namespace lin_alg {
     }
     
     mat operator-(const mat& A, const mat& B) {
-        check_same_size(A, B, "+");
+        check_same_size(A, B, "-");
         mat result(A.n_rows_(), A.n_cols_());
         for (size_t i = 0; i < A.data.size(); ++i) {
             result.data[i] = A.data[i] - B.data[i];
@@ -116,6 +120,28 @@ namespace lin_alg {
     mat operator-(const double scalar, const mat& A) {
         return A - scalar;
     }
+    
+    mat operator%(const mat& A, const mat& B) {
+        check_same_size(A, B, "%");
+        mat result(A.n_rows_(), A.n_cols_());
+        for (size_t i = 0; i < A.data.size(); ++i) {
+            result.data[i] = A.data[i] * B.data[i];
+        }
+        return result;
+    }
+
+    mat operator%(const mat& A, const double scalar) {
+        mat result(A.n_rows_(), A.n_cols_());
+        for (size_t i = 0; i < A.data.size(); ++i) {
+            result.data[i] = A.data[i] * scalar;
+        }
+        return result;
+    }
+
+    mat operator%(const double scalar, const mat& A) {
+        return A % scalar;
+    }
+
 
 
 
