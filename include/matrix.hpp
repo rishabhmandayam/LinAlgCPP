@@ -13,10 +13,13 @@ namespace lin_alg {
     };
 
     class mat {
-        std::vector<double> data;
+        
         private:
             size_t n_rows;
             size_t n_cols;
+            std::vector<double> data;
+
+            mat blocked_multiply(const mat& A, const mat& B, std::size_t BLOCK_SIZE = 64);
         public:
             //Default constructor -> empty matrix (0 x 0)
             mat();
@@ -63,19 +66,30 @@ namespace lin_alg {
             // Equality comparisons -> element-wise 1.0 or 0.0
             friend mat operator==(const mat& A, const mat& B);
             friend mat operator==(const mat& A, double scalar);
+            friend mat operator==(double scalar, const mat& A);
 
             friend mat operator!=(const mat& A, const mat& B);
             friend mat operator!=(const mat& A, double scalar);
+            friend mat operator!=(double scalar, const mat& A);
             
             friend mat operator<=(const mat& A, const mat& B);
             friend mat operator<=(const mat& A, double scalar);
+            friend mat operator<=(double scalar, const mat& A);
             
             friend mat operator>=(const mat& A, const mat& B);
             friend mat operator>=(const mat& A, double scalar);
+            friend mat operator>=(double scalar, const mat& A);
             
             friend mat operator<(const mat& A, const mat& B);
+            friend mat operator<(const mat& A, double scalar);
+            friend mat operator<(double scalar, const mat& A);
             
             friend mat operator>(const mat& A, const mat& B);
+            friend mat operator>(const mat& A, double scalar);
+            friend mat operator>(double scalar, const mat& A);
+
+            //matrix multiplication
+            friend mat operator*(const mat& A, const mat& B);
     };
 }
 
