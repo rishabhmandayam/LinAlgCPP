@@ -37,7 +37,7 @@ namespace lin_alg {
                 break;
             
             case fill::value:
-                std::fill(data.begin(), data.end(), 1.0);
+                std::fill(data.begin(), data.end(), val);
                 break;
         }
     }
@@ -99,7 +99,7 @@ namespace lin_alg {
                             double sum = C(i, j);
 
                             for (size_t k = k_block; k<k_block_end; k++) {
-                                sum += A(i,k) + B(k, j);
+                                sum += A(i,k) * B(k, j);
                             }
 
                             C(i,j) = sum;
